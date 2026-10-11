@@ -39,7 +39,9 @@ async function generateSample() {
       body: JSON.stringify({ business }),
     });
 
-    const data = await response.json();
+    const text = await response.text();
+    console.log("API response:",response.status,text);
+    const data=JSON.parse(text);
 
     if (!response.ok) {
       throw new Error(data.error || "Failed to generate content.");
